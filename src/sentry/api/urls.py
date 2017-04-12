@@ -91,6 +91,7 @@ from .endpoints.project_release_details import ProjectReleaseDetailsEndpoint
 from .endpoints.project_release_files import ProjectReleaseFilesEndpoint
 from .endpoints.project_release_file_details import ProjectReleaseFileDetailsEndpoint
 from .endpoints.project_release_commits import ProjectReleaseCommitsEndpoint
+from .endpoints.relay_config import RelayConfigEndpoint
 from .endpoints.release_deploys import ReleaseDeploysEndpoint
 from .endpoints.dsym_files import DSymFilesEndpoint, GlobalDSymFilesEndpoint, \
     UnknownDSymFilesEndpoint, AssociateDSymFilesEndpoint
@@ -137,6 +138,10 @@ urlpatterns = patterns(
     url(r'^broadcasts/$',
         BroadcastIndexEndpoint.as_view(),
         name='sentry-api-0-broadcast-index'),
+
+    # Relay
+    url(r'^relay/config/$',
+        RelayConfigEndpoint.as_view()),
 
     # Users
     url(r'^users/$',

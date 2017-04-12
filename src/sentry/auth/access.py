@@ -60,15 +60,28 @@ class BaseAccess(object):
                       DeprecationWarning)
         return self.has_team_access(team)
 
+    def has_project_access(self, project):
+        if not self.is_active:
+            return False
+        return project.team in self.teams
+
     def has_team_access(self, team):
         if not self.is_active:
             return False
         return team in self.teams
 
+    def has_project_membership(self, project):
+        if not self.is_active:
+            return False
+        return project.team in self.memberships
+
     def has_team_membership(self, team):
         if not self.is_active:
             return False
         return team in self.memberships
+
+    def has_project_scope(self, project, scope):
+        return self.has_project_access(project) and self.has_scope(scope)
 
     def has_team_scope(self, team, scope):
         return self.has_team_access(team) and self.has_scope(scope)
@@ -169,6 +182,20 @@ def from_member(member, scopes=None):
         memberships=team_memberships,
         teams=team_access,
     )
+
+
+class SDKAccess(object):
+    def __init__(self, project_id):
+        self.project_id = project_id
+
+    def get_allowed_origins(self):
+        return []
+
+    def get_scopes(self):
+        return ()
+
+    def has_scope(self, scope):
+        return scope in self.get_scopes()
 
 
 class NoAccess(BaseAccess):
