@@ -341,8 +341,12 @@ const NoteInput = React.createClass({
             <MentionsInput style={styles} placeholder={t('Add details or updates to this event')}
                       onChange={this.onChange}
                       value={value}
-                      displayTransform={ (display) => `@${display}` }
-                      markup="**__display__**" >
+                      displayTransform={ (id,display) => `@${display}` }
+                      markup="**__display__**"
+                      onFocus={this.expand}
+                      onBlur={this.maybeCollapse}
+                      required={true}
+                      autoFocus={true} >
                       <Mention trigger="@"
                           data={this.getMemberData()}
                           onAdd={this.onAdd}
