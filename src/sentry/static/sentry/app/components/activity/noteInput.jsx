@@ -255,7 +255,7 @@ const NoteInput = React.createClass({
         control: {
           backgroundColor: '#fff',
 
-          fontSize: 12,
+          fontSize: 15,
           fontWeight: 'normal',
         },
 
@@ -289,14 +289,15 @@ const NoteInput = React.createClass({
           },
 
           highlighter: {
-            padding: 9,
+            padding: 20,
           },
 
           input: {
-            padding: 9,
-            minHeight: 63,
+            padding: '15px 20px 0',
+            minHeight: 140,
             outline: 0,
             border: 0,
+            overflow: 'auto',
           },
         },
 
@@ -305,6 +306,7 @@ const NoteInput = React.createClass({
             backgroundColor: 'white',
             border: '1px solid rgba(0,0,0,0.15)',
             fontSize: 12,
+            fontFamily: 'Lato, Avenir Next, Helvetica Neue, sans-serif',
           },
 
           item: {
